@@ -103,7 +103,7 @@ function endGame (bombList, tentativi, maxTentativi){
 
     }
     // text
-    let message = ` Peccato hai perso :-( hai indovinato ${tentativi} tentativi. Gioca ancora`;
+    let message = ` Peccato hai perso :-( hai indovinato ${tentativi.length} tentativi. Gioca ancora`;
     if(tentativi.length === maxTentativi){
        message = `Complimenti hai vinto hai indovinato i ${maxTentativi} tentativi validi. Gioca ancora`;
     }

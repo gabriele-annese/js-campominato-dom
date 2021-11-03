@@ -50,6 +50,10 @@ body{
     padding-top: 10px;
 }
 
+.grid.end-game .square{
+    pointer-events: none;
+}
+
 .grid{
     display: flex;
     flex-wrap: wrap;
