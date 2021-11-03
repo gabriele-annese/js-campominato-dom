@@ -38,6 +38,10 @@ setBtn.addEventListener('click', function(){
     const bombList = generateBomb(16, cellsNumber);
     console.log(bombList);
 
+    // numeri tentativi
+    const tentativi = [];
+    const maxTentativi = cellsNumber - bombList.length;
+    console.log(maxTentativi);
 
     const grid = document.createElement('div');
     grid.classList.add('grid');
@@ -47,8 +51,8 @@ setBtn.addEventListener('click', function(){
         // gen numero random per square
         const square = createSquare(num, cellsParSide);
         square.addEventListener('click', function(){
-            this.classList.toggle('clicked')
-        })
+            squareClick(square, bombList, tentativi, maxTentativi )
+        });
         grid.append(square);
     }
 
@@ -61,7 +65,22 @@ setBtn.addEventListener('click', function(){
 
 
 // funzioni
+// gestioneclick
+function squareClick(square, bomblist, tentativi, maxTentativi ){
+    // numero square
+    const num = parseInt(square.innerHTML);
+    console.log(num);
+    //colpito bomba
+    if(bomblist.includes(num)){
+        console.log('bomba colpita')
+    } else if(!tentativi.includes(num)){
+        // colore
+        
+        // aggiornare array
 
+        // numero massimo tentativi
+    }
+}
 
 
 // genera numeri
@@ -81,10 +100,11 @@ function generateBomb(numberBombs, tocells){
     return bombs;
 }
 
-
 function numberRandom(min, max) {
     return Math.floor(Math.random() * ( max - min + 1 )) + min;
 }
+
+
 
 // gen square
 function createSquare(num, cells) {
@@ -93,10 +113,7 @@ function createSquare(num, cells) {
     node.style.width = `calc(100% / ${cells})`;
     node.style.height = `calc(100% / ${cells})`;
 
-    const span = document.createElement('span');
-    span.append(num);
-
-    node.append(span);
+    node.append(num);
 
     return node;
 }
