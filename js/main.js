@@ -72,15 +72,51 @@ function squareClick(square, bomblist, tentativi, maxTentativi ){
     console.log(num);
     //colpito bomba
     if(bomblist.includes(num)){
-        console.log('bomba colpita')
+        // fine gioco
+        endGame (bomblist, tentativi, maxTentativi)
     } else if(!tentativi.includes(num)){
         // colore
-        
+        square.classList.add('safe');
         // aggiornare array
-
+        tentativi.push(num)
+    
         // numero massimo tentativi
+        if(tentativi.length === maxTentativi){
+            // fine gioco
+            endGame (bomblist, tentativi, maxTentativi)
+        }
     }
 }
+// end game
+function endGame (bombList, tentativi, maxTentativi){
+    const squares = document.querySelectorAll('.square');
+    console.log(squares)
+
+    // mostra tutte le bombe 
+    for (let i = 0; i < squares.length; i++){
+        const square = squares[i];
+        const squareNumber = parseInt(square.innerHTML)
+
+        // comparazione
+        if(bombList.includes(squareNumber)){
+            square.classList.add('bomb');
+        }
+
+    }
+    // text
+    let message = ` Peccato hai perso :-( hai indovinato ${tentativi} tentativi. Gioca ancora`;
+    if(tentativi.length === maxTentativi){
+       message = `Complimenti hai vinto hai indovinato i ${maxTentativi} tentativi validi. Gioca ancora`;
+    }
+
+    // nodo messaggio
+    const messagEl = document.createElement('div');
+    messagEl.classList.add('message');
+    messagEl.append(message);
+
+    document.querySelector('.wrap-grid').append(messagEl);
+}
+
 
 
 // genera numeri
