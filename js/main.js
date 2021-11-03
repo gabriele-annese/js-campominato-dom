@@ -90,7 +90,6 @@ function squareClick(square, bomblist, tentativi, maxTentativi ){
 // end game
 function endGame (bombList, tentativi, maxTentativi){
     const squares = document.querySelectorAll('.square');
-    console.log(squares)
 
     // mostra tutte le bombe 
     for (let i = 0; i < squares.length; i++){
@@ -115,6 +114,9 @@ function endGame (bombList, tentativi, maxTentativi){
     messagEl.append(message);
 
     document.querySelector('.wrap-grid').append(messagEl);
+
+    // rendere non cliccabili square
+    document.querySelector('.grid').classList.add('end-game')
 }
 
 
